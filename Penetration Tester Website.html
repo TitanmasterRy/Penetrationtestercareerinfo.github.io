@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ethical Hacker Career Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#08111f;
+  --card:#111b2e;
+  --card-2:#0d1728;
+  --accent:#00d4ff;
+  --accent2:#6f8dff;
+  --text:#edf4ff;
+  --muted:#9fb0c7;
+  --border:rgba(255,255,255,.08);
+  --shadow:0 10px 40px rgba(0,0,0,.4);
+  --radius:18px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Inter",sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(0,212,255,.08), transparent 25%),
+    linear-gradient(180deg,#07101d,#08111f 40%,#08111f);
+  color:var(--text);
+  min-height:100vh;
+  padding:24px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+header{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  margin-bottom:24px;
+}
+
+.logo{
+  width:80px;
+  height:80px;
+  border-radius:20px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:var(--shadow);
+  flex-shrink:0;
+}
+
+.hero h1{
+  font-size:2rem;
+  margin-bottom:6px;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:700px;
+}
+
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+
+.nav-btn{
+  border:none;
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  padding:10px 16px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.2s;
+  font-weight:600;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.12);
+}
+
+.nav-btn.active{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:#03111f;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:1fr 320px;
+  gap:24px;
+}
+
+.card{
+  background:linear-gradient(180deg,var(--card),var(--card-2));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.section{
+  margin-bottom:28px;
+}
+
+.section h2{
+  margin-bottom:14px;
+  font-size:1.3rem;
+}
+
+.section p,
+.section li{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.section ul{
+  padding-left:20px;
+  margin-top:10px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+}
+
+.tool{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+}
+
+.tool h3{
+  margin-bottom:10px;
+}
+
+.link-btn{
+  display:inline-block;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:#03111f;
+  padding:8px 14px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+  margin-top:10px;
+}
+
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.step{
+  padding:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+}
+
+.accordion{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.acc-item{
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.acc-header{
+  padding:16px;
+  background:rgba(255,255,255,.03);
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+}
+
+.acc-content{
+  display:none;
+  padding:16px;
+  color:var(--muted);
+}
+
+.quiz{
+  background:rgba(255,255,255,.04);
+  padding:20px;
+  border-radius:16px;
+  border:1px solid var(--border);
+}
+
+.quiz-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+
+.result{
+  margin-top:14px;
+  font-weight:600;
+}
+
+.sidebar{
+  position:sticky;
+  top:24px;
+  height:fit-content;
+}
+
+.quick-links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.footer{
+  margin-top:28px;
+  color:var(--muted);
+  text-align:center;
+  font-size:.9rem;
+}
+
+button:focus,
+a:focus,
+input:focus{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+
+#matrixCanvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  opacity:.08;
+}
+
+@media(max-width:900px){
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  body{
+    padding:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrixCanvas"></canvas>
+
+<div class="container">
+
+<header>
+<div class="logo">
+<svg width="42" height="42" viewBox="0 0 24 24" fill="white">
+<path d="M12 2L4 5v6c0 5.25 3.44 10.74 8 12 4.56-1.26 8-6.75 8-12V5l-8-3z"/>
+</svg>
+</div>
+
+<div class="hero">
+<h1>Ethical Hacker Interactive Career Guide</h1>
+<p>
+Explore cybersecurity careers, penetration testing tools, certifications,
+interactive challenges, and hands-on learning resources.
+</p>
+
+<div class="nav">
+<button class="nav-btn active" data-page="overview">Overview</button>
+<button class="nav-btn" data-page="tools">Tools</button>
+<button class="nav-btn" data-page="schedule">Daily Schedule</button>
+<button class="nav-btn" data-page="methodology">Methodology</button>
+<button class="nav-btn" data-page="certs">Certifications</button>
+<button class="nav-btn" data-page="quiz">Quiz</button>
+</div>
+</div>
+</header>
+
+<div class="layout">
+
+<main>
+<div class="card">
+
+<section class="page active" id="overview">
+<div class="section">
+<h2>What Does an Ethical Hacker Do?</h2>
+<p>
+Ethical hackers legally test systems, applications, and networks to identify vulnerabilities before malicious attackers exploit them.
+</p>
+</div>
+
+<div class="section">
+<h2>Common Threats</h2>
+<ul>
+<li>Ransomware</li>
+<li>Credential Theft</li>
+<li>Phishing Attacks</li>
+<li>Cloud Misconfiguration</li>
+<li>API Abuse</li>
+</ul>
+</div>
+</section>
+
+<section class="page" id="tools">
+<div class="section">
+<h2>Pentesting Tools</h2>
+<div class="grid">
+
+<div class="tool">
+<h3>Burp Suite</h3>
+<p>Web application security testing toolkit.</p>
+<a class="link-btn" href="https://portswigger.net/burp" target="_blank" rel="noopener noreferrer">Open</a>
+</div>
+
+<div class="tool">
+<h3>Nmap</h3>
+<p>Network scanner for discovery and enumeration.</p>
+<a class="link-btn" href="https://nmap.org" target="_blank" rel="noopener noreferrer">Open</a>
+</div>
+
+<div class="tool">
+<h3>Wireshark</h3>
+<p>Packet analysis and network traffic inspection.</p>
+<a class="link-btn" href="https://wireshark.org" target="_blank" rel="noopener noreferrer">Open</a>
+</div>
+
+<div class="tool">
+<h3>Metasploit</h3>
+<p>Exploitation framework for validating vulnerabilities.</p>
+<a class="link-btn" href="https://metasploit.com" target="_blank" rel="noopener noreferrer">Open</a>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>Operating Systems</h2>
+<div class="accordion">
+
+<div class="acc-item">
+<div class="acc-header">
+<span>Kali Linux</span>
+<span>+</span>
+</div>
+<div class="acc-content">
+Debian-based Linux distro focused on penetration testing.
+</div>
+</div>
+
+<div class="acc-item">
+<div class="acc-header">
+<span>Parrot OS</span>
+<span>+</span>
+</div>
+<div class="acc-content">
+Security-focused Linux distribution with privacy tools.
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="page" id="schedule">
+
+<div class="section">
+<h2>Daily Ethical Hacker Schedule</h2>
+
+<div class="timeline">
+
+<div class="step">
+<h3>8:00 AM — Threat Intel Review</h3>
+<p>Review CVEs, cybersecurity news, and threat feeds.</p>
+</div>
+
+<div class="step">
+<h3>9:00 AM — Reconnaissance</h3>
+<p>Gather OSINT and enumerate target systems.</p>
+</div>
+
+<div class="step">
+<h3>11:00 AM — Vulnerability Scanning</h3>
+<p>Run Nmap scans and identify exposed services.</p>
+</div>
+
+<div class="step">
+<h3>1:00 PM — Web Application Testing</h3>
+<p>Use Burp Suite to test web applications.</p>
+</div>
+
+<div class="step">
+<h3>3:00 PM — Exploitation</h3>
+<p>Safely validate vulnerabilities in lab environments.</p>
+</div>
+
+<div class="step">
+<h3>5:00 PM — Reporting</h3>
+<p>Create remediation reports and technical documentation.</p>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2>Daily Progress Tracker</h2>
+
+<div class="quiz">
+<p>Select activities completed today:</p>
+
+<div class="quiz-buttons">
+<button class="nav-btn tracker-btn">Recon</button>
+<button class="nav-btn tracker-btn">Scanning</button>
+<button class="nav-btn tracker-btn">Exploitation</button>
+<button class="nav-btn tracker-btn">Reporting</button>
+<button class="nav-btn tracker-btn">CTF Practice</button>
+</div>
+
+<div class="result" id="trackerResult">
+0 tasks completed today.
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Cyber XP Level System</h2>
+
+<div class="quiz">
+<div style="width:100%;height:20px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;">
+<div id="xpBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.3s;"></div>
+</div>
+
+<p style="margin-top:12px">Level: <span id="xpLevel">1</span></p>
+<p style="color:var(--muted)">XP: <span id="xpText">0</span>/100</p>
+</div>
+</div>
+
+<div class="section">
+<h2>Interactive Terminal</h2>
+
+<div style="background:black;padding:20px;border-radius:16px;font-family:monospace;border:1px solid var(--border);">
+<div id="terminalOutput" style="min-height:180px;color:#00ff88;margin-bottom:12px;white-space:pre-wrap;"></div>
+
+<div style="display:flex;gap:10px">
+<span style="color:#00ff88">root@kali:~$</span>
+<input id="terminalInput" type="text" placeholder="Type a command..." style="flex:1;background:black;border:none;outline:none;color:#00ff88;font-family:monospace;" />
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Random Cybersecurity Facts</h2>
+<div class="quiz">
+<p id="factText">Click below to generate a cybersecurity fact.</p>
+<button class="nav-btn" id="factBtn">Generate Fact</button>
+</div>
+</div>
+
+</section>
+
+<section class="page" id="methodology">
+<div class="section">
+<h2>Penetration Testing Methodology</h2>
+<div class="timeline">
+<div class="step"><h3>1. Reconnaissance</h3><p>Gather target information and OSINT.</p></div>
+<div class="step"><h3>2. Enumeration</h3><p>Identify services and vulnerabilities.</p></div>
+<div class="step"><h3>3. Exploitation</h3><p>Safely validate security flaws.</p></div>
+<div class="step"><h3>4. Reporting</h3><p>Document findings and remediation.</p></div>
+</div>
+</div>
+</section>
+
+<section class="page" id="certs">
+<div class="section">
+<h2>Recommended Certifications</h2>
+<div class="grid">
+<div class="tool"><h3>Security+</h3><p>Foundational cybersecurity certification.</p></div>
+<div class="tool"><h3>PenTest+</h3><p>Hands-on pentesting certification.</p></div>
+<div class="tool"><h3>CEH</h3><p>Certified Ethical Hacker.</p></div>
+<div class="tool"><h3>OSCP</h3><p>Advanced practical pentesting certification.</p></div>
+</div>
+</div>
+</section>
+
+<section class="page" id="quiz">
+<div class="section">
+<h2>Cybersecurity Quiz</h2>
+
+<div class="quiz">
+<p>Which tool is commonly used as a web application proxy?</p>
+
+<div class="quiz-buttons">
+<button class="nav-btn answer" data-answer="correct">Burp Suite</button>
+<button class="nav-btn answer">Wireshark</button>
+<button class="nav-btn answer">Nmap</button>
+</div>
+
+<div class="result" id="quizResult"></div>
+</div>
+</div>
+</section>
+
+<div class="footer">
+Last Updated: <span id="date"></span>
+</div>
+
+</div>
+</main>
+
+<aside class="sidebar">
+<div class="card">
+<div class="section">
+<h2>Quick Links</h2>
+<div class="quick-links">
+<a class="link-btn" href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener noreferrer">OWASP Top 10</a>
+<a class="link-btn" href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer">TryHackMe</a>
+<a class="link-btn" href="https://hackthebox.com/" target="_blank" rel="noopener noreferrer">Hack The Box</a>
+</div>
+</div>
+</div>
+</aside>
+
+</div>
+</div>
+
+<script>
+
+// DATE
+
+document.getElementById("date").textContent =
+new Date().toLocaleDateString();
+
+// PAGE NAVIGATION
+
+const navButtons = document.querySelectorAll(".nav-btn[data-page]");
+const pages = document.querySelectorAll(".page");
+
+navButtons.forEach(button => {
+  button.addEventListener("click", () => {
+
+    navButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    const page = button.dataset.page;
+
+    pages.forEach(section => section.classList.remove("active"));
+
+    document.getElementById(page).classList.add("active");
+
+    addXP(10);
+  });
+});
+
+// ACCORDION
+
+document.querySelectorAll(".acc-header")
+.forEach(header => {
+
+  header.addEventListener("click", () => {
+
+    const content = header.nextElementSibling;
+
+    const isOpen = content.style.display === "block";
+
+    document.querySelectorAll(".acc-content")
+    .forEach(c => c.style.display = "none");
+
+    content.style.display = isOpen ? "none" : "block";
+  });
+});
+
+// QUIZ
+
+const answers = document.querySelectorAll(".answer");
+const quizResult = document.getElementById("quizResult");
+
+answers.forEach(answer => {
+
+  answer.addEventListener("click", () => {
+
+    if(answer.dataset.answer === "correct"){
+
+      quizResult.textContent =
+      "Correct! Burp Suite is a popular web application proxy.";
+
+      quizResult.style.color = "#00d4ff";
+
+      addXP(15);
+
+    } else {
+
+      quizResult.textContent =
+      "Incorrect. Burp Suite is the correct answer.";
+
+      quizResult.style.color = "#ff7b7b";
+    }
+  });
+});
+
+// XP SYSTEM
+
+let xp = 0;
+let level = 1;
+
+function addXP(amount){
+
+  xp += amount;
+
+  if(xp >= 100){
+    xp = 0;
+    level++;
+
+    alert("Level Up! You are now level " + level);
+  }
+
+  document.getElementById("xpBar").style.width = xp + "%";
+  document.getElementById("xpText").textContent = xp;
+  document.getElementById("xpLevel").textContent = level;
+}
+
+// TRACKER
+
+const trackerButtons = document.querySelectorAll(".tracker-btn");
+const trackerResult = document.getElementById("trackerResult");
+
+let completed = 0;
+
+trackerButtons.forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    btn.classList.toggle("active");
+
+    if(btn.classList.contains("active")){
+      completed++;
+      addXP(5);
+    } else {
+      completed--;
+    }
+
+    trackerResult.textContent =
+    completed + " tasks completed today.";
+  });
+});
+
+// TERMINAL
+
+const terminalInput = document.getElementById("terminalInput");
+const terminalOutput = document.getElementById("terminalOutput");
+
+const fakeCommands = {
+  help:`help\nwhoami\nls\nnmap\nclear\nhack`,
+  whoami:"ethical_hacker",
+  ls:`tools/\nreports/\npayloads/`,
+  nmap:"Starting Nmap scan...\\n22/tcp open ssh\\n80/tcp open http",
+  hack:"Access denied. Ethical hacking only."
+};
+
+terminalInput.addEventListener("keydown", e => {
+
+  if(e.key === "Enter"){
+
+    const cmd = terminalInput.value.trim();
+
+    terminalOutput.innerHTML +=
+    "\nroot@kali:~$ " + cmd + "\n";
+
+    if(cmd === "clear"){
+      terminalOutput.innerHTML = "";
+    } else {
+      terminalOutput.innerHTML +=
+      (fakeCommands[cmd] || "Command not found.") + "\n";
+    }
+
+    addXP(3);
+
+    terminalInput.value = "";
+  }
+});
+
+// FACT GENERATOR
+
+const facts = [
+"Most cyberattacks begin with phishing emails.",
+"The first computer virus was created in 1971.",
+"SQL injection remains one of the most common vulnerabilities.",
+"Cybersecurity jobs are rapidly growing worldwide.",
+"Strong passwords should contain at least 12 characters."
+];
+
+const factBtn = document.getElementById("factBtn");
+const factText = document.getElementById("factText");
+
+factBtn.addEventListener("click", () => {
+
+  const random = facts[Math.floor(Math.random() * facts.length)];
+
+  factText.textContent = random;
+
+  addXP(2);
+});
+
+// MATRIX EFFECT
+
+const canvas = document.getElementById('matrixCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = '01';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for(let x = 0; x < columns; x++){
+  drops[x] = 1;
+}
+
+function drawMatrix(){
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle = '#00ff88';
+  ctx.font = fontSize + 'px monospace';
+
+  for(let i = 0; i < drops.length; i++){
+    const text = letters[Math.floor(Math.random()*letters.length)];
+
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975){
+      drops[i] = 0;
+    }
+
+    drops[i]++;
+  }
+}
+
+setInterval(drawMatrix, 35);
+
+</script>
+
+</body>
+</html>
